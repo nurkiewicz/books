@@ -23,6 +23,23 @@ $(function() {
 				}
 			});
 
+	$.extend($.jgrid.edit, {
+				closeAfterEdit: true,
+				closeAfterAdd: true,
+				ajaxEditOptions: { contentType: "application/json" },
+				mtype: 'PUT',
+				serializeEditData: function(data) {
+					delete data.oper;
+					return JSON.stringify(data);
+				}
+			});
+	$.extend($.jgrid.del, {
+				mtype: 'DELETE',
+				serializeDelData: function() {
+					return "";
+				}
+			});
+
 	var URL = 'rest/book';
 	var options = {
 		url: URL,
@@ -92,8 +109,26 @@ $(function() {
 		pager : '#pager',
 		height: 'auto'
 	};
+
+	var editOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata.id;
+		}
+	};
+	var addOptions = {mtype: "POST"};
+	var delOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata;
+		}
+	};
 	$("#grid")
 			.jqGrid(options)
-			.navGrid('#pager', {edit:true,add:true,del:true, search: false});
+			.navGrid('#pager',
+			{}, //options
+			editOptions,
+			addOptions,
+			delOptions,
+			{} // search options
+	);
 
 });
