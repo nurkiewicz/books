@@ -16,11 +16,12 @@ public class Book implements Comparable<Book> {
 	public Book() {
 	}
 
-	public Book(String title, String author, int publishedYear, boolean available) {
+	public Book(String title, String author, int publishedYear, boolean available, Cover cover) {
 		this.title = title;
 		this.author = author;
 		this.publishedYear = publishedYear;
 		this.available = available;
+		this.cover = cover;
 	}
 
 	public Integer getId() {
