@@ -66,32 +66,32 @@ $(function() {
 			},
 			{
 				name:'title',
-				label: 'Title',
+				label: 'Tytuł',
 				width: 300,
 				editable: true,
 				editrules: {required: true}
 			},
 			{
 				name:'author',
-				label: 'Author',
+				label: 'Autor',
 				width: 200,
 				editable: true,
 				editrules: {required: true}
 			},
 			{
 				name:'cover',
-				label: 'Cover',
+				label: 'Okładka',
 				hidden: true,
 				editable: true,
 				edittype: 'select',
 				editrules: {edithidden:true},
 				editoptions: {
-					value: {'PAPERBACK': 'paperback', 'HARDCOVER': 'hardcover', 'DUST_JACKET': 'dust jacket'}
+					value: {'PAPERBACK': 'miękka', 'HARDCOVER': 'twarda', 'DUST_JACKET': 'obwoluta'}
 				}
 			},
 			{
 				name:'publishedYear',
-				label: 'Published year',
+				label: 'Rok publikacji',
 				width: 80,
 				align: 'center',
 				editable: true,
@@ -100,7 +100,7 @@ $(function() {
 			},
 			{
 				name:'available',
-				label: 'Available',
+				label: 'Dostępna',
 				formatter: 'checkbox',
 				width: 46,
 				align: 'center',
@@ -110,14 +110,14 @@ $(function() {
 			},
 			{
 				name:'comments',
-				label: 'Comments',
+				label: 'Uwagi',
 				hidden: true,
 				editable: true,
 				edittype: 'textarea',
 				editrules: {edithidden:true}
 			}
 		],
-		caption: "Books",
+		caption: "Książki",
 		pager : '#pager',
 		height: 'auto',
 		ondblClickRow: function(id) {
