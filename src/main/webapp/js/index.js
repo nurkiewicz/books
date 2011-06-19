@@ -40,6 +40,18 @@ $(function() {
 				}
 			});
 
+	var editOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata.id;
+		}
+	};
+	var addOptions = {mtype: "POST"};
+	var delOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata;
+		}
+	};
+
 	var URL = 'rest/book';
 	var options = {
 		url: URL,
@@ -107,20 +119,12 @@ $(function() {
 		],
 		caption: "Books",
 		pager : '#pager',
-		height: 'auto'
+		height: 'auto',
+		ondblClickRow: function(id) {
+			jQuery(this).jqGrid('editGridRow', id, editOptions);
+		}
 	};
 
-	var editOptions = {
-		onclickSubmit: function(params, postdata) {
-			params.url = URL + '/' + postdata.id;
-		}
-	};
-	var addOptions = {mtype: "POST"};
-	var delOptions = {
-		onclickSubmit: function(params, postdata) {
-			params.url = URL + '/' + postdata;
-		}
-	};
 	$("#grid")
 			.jqGrid(options)
 			.navGrid('#pager',
