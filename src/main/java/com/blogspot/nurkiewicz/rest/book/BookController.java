@@ -78,12 +78,16 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/{id}", method = GET)
-	public @ResponseBody Book read(@PathVariable("id") int id) {
+	public
+	@ResponseBody
+	Book read(@PathVariable("id") int id) {
 		return books.get(id);
 	}
 
 	@RequestMapping(method = GET)
-	public @ResponseBody Page<Book> listBooks(
+	public
+	@ResponseBody
+	Page<Book> listBooks(
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "max", required = false, defaultValue = "20") int max) {
 		final ArrayList<Book> booksList = new ArrayList<Book>(books.values());
@@ -92,11 +96,34 @@ public class BookController {
 		return new Page<Book>(booksList.subList(startIdx, endIdx), page, max, books.size());
 	}
 
+	@RequestMapping(value = "/{id}", method = PUT)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateBook(@PathVariable("id") int id, @RequestBody Book book) {
+		book.setId(id);
+		books.put(id, book);
+	}
+
+	@RequestMapping(method = POST)
+	public ResponseEntity<String> createBook(HttpServletRequest request, @RequestBody Book book) {
+		final int id = save(book);
+
+		URI uri = new UriTemplate("{requestUrl}/{username}").expand(request.getRequestURL().toString(), id);
+		final HttpHeaders headers = new HttpHeaders();
+		headers.put("Location", singletonList(uri.toASCIIString()));
+		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	}
+
 	private Integer save(Book book) {
 		final int id = curId.incrementAndGet();
 		book.setId(id);
 		books.put(id, book);
 		return id;
+	}
+
+	@RequestMapping(value = "/{id}", method = DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteBook(@PathVariable("id") int id) {
+		books.remove(id);
 	}
 
 }
