@@ -99,8 +99,10 @@ public class BookController {
 	@RequestMapping(value = "/{id}", method = PUT)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateBook(@PathVariable("id") int id, @RequestBody Book book) {
-		book.setId(id);
-		books.put(id, book);
+	    if (books.containsKey(id)) {
+		    book.setId(id);
+		    books.put(id, book);
+	    }
 	}
 
 	@RequestMapping(method = POST)
