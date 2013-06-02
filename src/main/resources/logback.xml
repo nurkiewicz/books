@@ -2,6 +2,7 @@
 <configuration>
 	<logger name="com" level="INFO"/>
 	<logger name="org" level="INFO"/>
+	<logger name="org.eclipse.persistence.logging.sql" level="ALL"/>
 	<logger name="org.springframework.web" level="INFO"/>
 
 	<root level="ALL">
