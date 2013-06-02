@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -20,7 +21,7 @@ import java.util.Properties;
  * @since 6/2/13, 5:06 PM
  */
 @Configuration
-//@EnableTransactionManagement
+@EnableTransactionManagement
 @EnableJpaRepositories
 public class Spring {
 
