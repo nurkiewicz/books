@@ -1,15 +1,28 @@
-package com.blogspot.nurkiewicz.rest.book;
+package com.blogspot.nurkiewicz;
 
+import com.blogspot.nurkiewicz.rest.Cover;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-public class Book implements Comparable<Book> {
+import static javax.persistence.GenerationType.IDENTITY;
 
+@XmlRootElement
+@Entity
+public class Book {
+
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	private Integer id;
 	private String author;
 	private String title;
 	private int publishedYear;
 	private boolean available;
+	@Convert(converter = CoverConverter.class)
 	private Cover cover;
 	private String comments;
 
@@ -81,7 +94,14 @@ public class Book implements Comparable<Book> {
 	}
 
 	@Override
-	public int compareTo(Book o) {
-		return id > o.id? 1 : id < o.id? -1 : 0;
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("id", id)
+				.append("author", author)
+				.append("title", title)
+				.append("publishedYear", publishedYear)
+				.append("available", available)
+				.append("cover", cover)
+				.toString();
 	}
 }

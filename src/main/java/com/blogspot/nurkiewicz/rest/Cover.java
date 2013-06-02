@@ -1,4 +1,4 @@
-package com.blogspot.nurkiewicz.rest.book;
+package com.blogspot.nurkiewicz.rest;
 
 /**
  * @author Tomasz Nurkiewicz

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<entity-mappings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm" version="2.1">
+	<converter class="com.blogspot.nurkiewicz.CoverConverter"/>
+</entity-mappings>

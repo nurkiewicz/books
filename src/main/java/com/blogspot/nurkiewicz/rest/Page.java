@@ -1,6 +1,6 @@
 package com.blogspot.nurkiewicz.rest;
 
-import com.blogspot.nurkiewicz.rest.book.Book;
+import com.blogspot.nurkiewicz.Book;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -18,12 +18,12 @@ public class Page<T> {
 
 	private int page;
 	private int max;
-	private int total;
+	private long total;
 
 	public Page() {
 	}
 
-	public Page(List<T> rows, int page, int max, int total) {
+	public Page(List<T> rows, int page, int max, long total) {
 		this.rows = rows;
 		this.page = page;
 		this.max = max;
@@ -54,11 +54,11 @@ public class Page<T> {
 		this.max = max;
 	}
 
-	public int getTotal() {
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 }
