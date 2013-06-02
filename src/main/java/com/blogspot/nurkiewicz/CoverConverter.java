@@ -18,7 +18,7 @@ public class CoverConverter implements AttributeConverter<Cover, String> {
 			case PAPERBACK:
 				return "P";
 			default:
-				throw new IllegalStateException("Unknown" + attribute);
+				throw new IllegalArgumentException("Unknown" + attribute);
 		}
 	}
 
@@ -32,7 +32,7 @@ public class CoverConverter implements AttributeConverter<Cover, String> {
 			case "P":
 				return PAPERBACK;
 			default:
-				throw new IllegalStateException("Unknown" + dbData);
+				throw new IllegalArgumentException("Unknown" + dbData);
 		}
 	}
 }
