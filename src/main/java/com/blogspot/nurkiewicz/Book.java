@@ -1,6 +1,5 @@
 package com.blogspot.nurkiewicz;
 
-import com.blogspot.nurkiewicz.rest.Cover;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.Convert;

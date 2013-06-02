@@ -1,6 +1,7 @@
 package com.blogspot.nurkiewicz.rest;
 
 import com.blogspot.nurkiewicz.Book;
+import org.springframework.data.domain.Page;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @XmlRootElement
 @XmlSeeAlso({Book.class})
-public class Page<T> {
+public class ViewPage<T> {
 
 	private List<T> rows;
 
@@ -20,14 +21,14 @@ public class Page<T> {
 	private int max;
 	private long total;
 
-	public Page() {
+	public ViewPage() {
 	}
 
-	public Page(List<T> rows, int page, int max, long total) {
-		this.rows = rows;
-		this.page = page;
-		this.max = max;
-		this.total = total;
+	public ViewPage(Page<T> dbPage) {
+		this.rows = dbPage.getContent();
+		this.page = dbPage.getNumber() + 1;
+		this.max = dbPage.getSize();
+		this.total = dbPage.getTotalElements();
 	}
 
 	public List<T> getRows() {

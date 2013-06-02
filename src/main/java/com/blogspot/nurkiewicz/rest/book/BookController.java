@@ -2,9 +2,8 @@ package com.blogspot.nurkiewicz.rest.book;
 
 import com.blogspot.nurkiewicz.Book;
 import com.blogspot.nurkiewicz.BookDao;
-import com.blogspot.nurkiewicz.rest.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import com.blogspot.nurkiewicz.rest.ViewPage;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +35,8 @@ public class BookController {
 	@RequestMapping(method = GET)
 	public
 	@ResponseBody
-	Page<Book> listBooks(
-			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "max", required = false, defaultValue = "20") int max) {
-		final org.springframework.data.domain.Page<Book> slice = bookDao.findAll(new PageRequest(page - 1, max, Sort.Direction.ASC, "title"));
-		return new Page<Book>(slice.getContent(), page, max, slice.getTotalElements());
+	ViewPage<Book> listBooks(Pageable page) {
+		return new ViewPage<>(bookDao.findAll(page));
 	}
 
 	@RequestMapping(value = "/{id}", method = PUT)

@@ -13,7 +13,14 @@ $(function() {
 						return result.total;
 					}
 				},
-				prmNames: {rows: 'max', search: null},
+				prmNames: {
+					page: "page.page",
+					rows: "page.size",
+					sort: "page.sort",
+					order: "page.sort.dir"
+				},
+				sortname: 'title',
+				sortorder: 'asc',
 				height: 'auto',
 				viewrecords: true,
 				rowList: [10, 20, 50, 100],
@@ -58,7 +65,9 @@ $(function() {
 		editurl: URL,
 		colModel:[
 			{
-				name:'id', label: 'ID',
+				name:'id',
+				label: 'ID',
+				index: 'id',
 				formatter:'integer',
 				width: 40,
 				editable: true,
@@ -67,6 +76,7 @@ $(function() {
 			{
 				name:'title',
 				label: 'Title',
+				index: 'title',
 				width: 300,
 				editable: true,
 				editrules: {required: true}
@@ -74,6 +84,7 @@ $(function() {
 			{
 				name:'author',
 				label: 'Author',
+				index: 'author',
 				width: 200,
 				editable: true,
 				editrules: {required: true}
@@ -81,6 +92,7 @@ $(function() {
 			{
 				name:'cover',
 				label: 'Cover',
+				index: 'cover',
 				hidden: true,
 				editable: true,
 				edittype: 'select',
@@ -92,6 +104,7 @@ $(function() {
 			{
 				name:'publishedYear',
 				label: 'Published year',
+				index: 'publishedYear',
 				width: 80,
 				align: 'center',
 				editable: true,
@@ -101,6 +114,7 @@ $(function() {
 			{
 				name:'available',
 				label: 'Available',
+				index: 'available',
 				formatter: 'checkbox',
 				width: 46,
 				align: 'center',
@@ -111,6 +125,7 @@ $(function() {
 			{
 				name:'comments',
 				label: 'Comments',
+				index: 'comments',
 				hidden: true,
 				editable: true,
 				edittype: 'textarea',

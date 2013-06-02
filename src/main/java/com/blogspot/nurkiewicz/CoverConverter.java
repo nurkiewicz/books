@@ -1,11 +1,9 @@
 package com.blogspot.nurkiewicz;
 
-import com.blogspot.nurkiewicz.rest.Cover;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import static com.blogspot.nurkiewicz.rest.Cover.*;
+import static com.blogspot.nurkiewicz.Cover.*;
 
 @Converter
 public class CoverConverter implements AttributeConverter<Cover, String> {

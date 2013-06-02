@@ -1,6 +1,5 @@
 package com.blogspot.nurkiewicz;
 
-import com.blogspot.nurkiewicz.rest.Cover;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.data.domain.Sort;
