@@ -50,6 +50,7 @@ public class Spring {
 		final Properties properties = new Properties();
 		properties.setProperty("javax.persistence.schema-generation.database.action", "none");
 		properties.setProperty("eclipselink.weaving", Boolean.FALSE.toString());
+		properties.setProperty("eclipselink.logging.logger", Slf4jSessionLogger.class.getName());
 		properties.setProperty("eclipselink.logging.level.sql", "FINE");
 		properties.setProperty("eclipselink.logging.parameters", Boolean.TRUE.toString());
 		return properties;
