@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
+@Transactional
 public class SpringSmokeTest {
 
 	@Resource
@@ -30,7 +32,7 @@ public class SpringSmokeTest {
 
 	@Test
 	public void creating() throws Exception {
-		bookDao.save(new Book("Foo", "Bar", 2000, true, Cover.HARDCOVER));
+		bookDao.saveAndFlush(new Book("Foo", "Bar", 2000, true, Cover.HARDCOVER));
 	}
 
 }
