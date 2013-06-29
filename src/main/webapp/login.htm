@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style>
+        table.users {
+            border-collapse: collapse;
+        }
+        table.users td, th {
+            padding: 4px 10px;
+            border: 1px solid black;
+
+        }
+        table.th {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body ng-app ng-controller="LoginCtrl">
+<form action="j_spring_security_check" method="POST">
+    <table>
+        <tr>
+            <td><label for="j_username">User:</label></td>
+            <td><input type="text" name="j_username" id="j_username" value="" autofocus="autofocus" ng-model="user.name"></td>
+        </tr>
+        <tr>
+            <td><label for="j_password">Password:</label></td>
+            <td><input type="password" name="j_password" id="j_password" ng-model="user.password"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Login"/></td>
+        </tr>
+    </table>
+    <h1>Available test users:</h1>
+    <table class="users">
+        <tr>
+            <th>User name</th>
+            <th>Password</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{user.name}}</td>
+            <td>{{user.password}}</td>
+            <td><a href="javascript:void(0)" ng-click="select(user)">select</a></td>
+        </tr>
+    </table>
+</form>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script>
+    function LoginCtrl($scope) {
+        $scope.users = [
+            {"name": "alice",   "password": "alice"},
+            {"name": "bob",     "password": "bob"},
+            {"name": "charlie", "password": "charlie"}
+        ];
+        $scope.select = function(user) {
+            $scope.user = angular.copy(user);
+        }
+    }
+</script>
+</body>
+</html>

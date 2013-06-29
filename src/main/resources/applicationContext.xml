@@ -7,6 +7,8 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		">
 
+	<beans:import resource="classpath:applicationContext-security.xml"/>
+
 	<component-scan base-package="com.blogspot.nurkiewicz" >
 		<exclude-filter type="regex" expression="com.blogspot.nurkiewicz.rest.*"/>
 	</component-scan>
