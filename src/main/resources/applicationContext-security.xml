@@ -23,7 +23,7 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<b:bean id="switchUserProcessingFilter" class="com.blogspot.nurkiewicz.rest.SwitchUserOnceFilter">
+	<b:bean id="switchUserProcessingFilter" class="com.blogspot.nurkiewicz.switchuser.SwitchUserOnceFilter">
 		<b:property name="userDetailsService" ref="userDetailsService"/>
 		<b:property name="targetUrl" value="/"/>
 	</b:bean>

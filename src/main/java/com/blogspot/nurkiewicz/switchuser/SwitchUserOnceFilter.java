@@ -1,4 +1,4 @@
-package com.blogspot.nurkiewicz.rest;
+package com.blogspot.nurkiewicz.switchuser;
 
 import com.google.common.base.Throwables;
 import org.springframework.security.core.Authentication;
