@@ -5,6 +5,7 @@
            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true" use-expressions="true">
+		<custom-filter position="SWITCH_USER_FILTER" ref="switchUserProcessingFilter" />
 		<intercept-url pattern="/login.htm" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 		<form-login login-page="/login.htm"/>
@@ -20,5 +21,10 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+
+	<b:bean id="switchUserProcessingFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+		<b:property name="userDetailsService" ref="userDetailsService"/>
+		<b:property name="targetUrl" value="/"/>
+	</b:bean>
 
 </b:beans>
