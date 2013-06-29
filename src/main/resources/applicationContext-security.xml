@@ -7,6 +7,7 @@
 	<http auto-config="true" use-expressions="true">
 		<custom-filter position="SWITCH_USER_FILTER" ref="switchUserProcessingFilter" />
 		<intercept-url pattern="/login.htm" access="permitAll" />
+		<intercept-url pattern="/j_spring_security_switch_user" access="hasRole('ROLE_SUPERVISOR')"/>
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 		<form-login login-page="/login.htm"/>
 		<logout logout-success-url="/login.htm"/>
