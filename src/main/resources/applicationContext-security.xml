@@ -22,7 +22,7 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<b:bean id="switchUserProcessingFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+	<b:bean id="switchUserProcessingFilter" class="com.blogspot.nurkiewicz.rest.SwitchUserOnceFilter">
 		<b:property name="userDetailsService" ref="userDetailsService"/>
 		<b:property name="targetUrl" value="/"/>
 	</b:bean>
