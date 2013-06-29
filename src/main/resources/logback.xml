@@ -8,7 +8,7 @@
 	<root level="ALL">
 		<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 			<encoder>
-				<pattern>%d{HH:mm:ss.SSS} | %-5level | %thread | %logger{1} | %m%n%rEx</pattern>
+				<pattern>%d{HH:mm:ss.SSS} | %-5level | %X{user} | %thread | %logger{1} | %m%n%rEx</pattern>
 			</encoder>
 		</appender>
 	</root>
