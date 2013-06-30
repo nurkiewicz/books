@@ -12,7 +12,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -24,17 +23,16 @@ public class SwitchUserOnceFilter extends SwitchUserFilter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) res;
 
 		final String switchUserHeader = request.getHeader("X-Switch-User-Once");
 		if (switchUserHeader != null) {
-			trySwitchingUserForThisRequest(chain, request, response, switchUserHeader);
+			trySwitchingUserForThisRequest(chain, request, res, switchUserHeader);
 		} else {
 			super.doFilter(req, res, chain);
 		}
 	}
 
-	private void trySwitchingUserForThisRequest(FilterChain chain, HttpServletRequest request, HttpServletResponse response, String switchUserHeader) throws IOException, ServletException {
+	private void trySwitchingUserForThisRequest(FilterChain chain, HttpServletRequest request, ServletResponse response, String switchUserHeader) throws IOException, ServletException {
 		try {
 			proceedWithSwitchedUser(chain, request, response, switchUserHeader);
 		} catch (AuthenticationException e) {
@@ -42,7 +40,7 @@ public class SwitchUserOnceFilter extends SwitchUserFilter {
 		}
 	}
 
-	private void proceedWithSwitchedUser(FilterChain chain, HttpServletRequest request, HttpServletResponse response, String switchUserHeader) throws IOException, ServletException {
+	private void proceedWithSwitchedUser(FilterChain chain, HttpServletRequest request, ServletResponse response, String switchUserHeader) throws IOException, ServletException {
 		final Authentication targetUser = attemptSwitchUser(new SwitchUserRequest(request, switchUserHeader));
 		SecurityContextHolder.getContext().setAuthentication(targetUser);
 
