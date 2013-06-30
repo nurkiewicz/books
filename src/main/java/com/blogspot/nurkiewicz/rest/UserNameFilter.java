@@ -20,8 +20,9 @@ public class UserNameFilter implements Filter {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		final String userName = authentication.getName();
 		final String realName = findSwitchedUser(authentication);
+		final String fullName = userName + (realName != null ? " (" + realName + ")" : "");
 
-		MDC.put("user", userName + (realName != null ? " (" + realName + ")" : ""));
+		MDC.put("user", fullName);
 		try {
 			chain.doFilter(request, response);
 		} finally {
